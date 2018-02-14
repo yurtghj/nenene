@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ 	
+ 	/* form:hover{
+		transform:rotate(45deg);  
+		transform-origin:left top;
+	}  */
+	
+	 
+	 /* +바로 밑 동생, ~ 동생들 중에, 빈칸은 자손, >은 자식 */
+	 #btn-submit+input{
+	  	transition-duration:1s;
+	 	transition-property:width;
+	 	height:20px;
+	 	width:100xp;
+	 }
+	 
+	#btn-submit:hover+input{ /* hover는 형이 일어나지만  input이 변경됨 */
+	 	height:200px;
+		width:300px; 
+	}
+	
+</style>
+</head>
+<body>
+	<div>
+		<form action="hell" method="get"> <!-- url명 써줘야함 -->
+			<div>
+				<label>"안녕하세요"를 몇 번 듣고 싶으세요?</label>
+			</div>
+			<div>
+				<input type="text" name="cnt" /> <!-- name이 들어가지 않은 텍스트박스 아무 의미 x 전달되지 x -->
+				<input id="btn-submit" type="submit" value="출력" />
+				<input/>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

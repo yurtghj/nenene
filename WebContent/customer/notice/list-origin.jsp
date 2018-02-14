@@ -1,3 +1,24 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import= "java.sql.DriverManager"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String sql = "SELECT * FROM NOTICE";
+
+	//드라이버 로드
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	String url = "jdbc:oracle:thin:@211.238.142.251:1521:orcl";
+	Connection con = DriverManager.getConnection(url, "c##sist", "dclass");
+	Statement st = con.createStatement();
+	ResultSet rs = st.executeQuery(sql);
+
+	String id;
+	String writerid;
+	String title;
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +30,7 @@
 </style>
 </head>
 <body>
-	<header id="header">
+<header id="header">
 		<div class="root-container">
 			 <h1 id="logo"><img src="../../images/logo.png"alt="뉴렉처 온라인"></h1>
 
@@ -117,36 +138,42 @@
 				<section>
 				<h3 class='hidden'>공지사항 검색 목록</h3>
 				
-					<table border="1">
-						<tr>
+					<table class="table">
+					<thead>
+					<tr>
 							<td>번호</td>
 							<td>제목</td>
 							<td>작성자</td>
 							<td>작성일</td>
 							<td>조회수</td>
 						</tr>
+					</thead>
+						<tbody>
+
+						
+						<%
+							while (rs.next()) {
+								id = rs.getString("ID");
+								writerid = rs.getString("WRITER_ID");
+								title = rs.getString("TITLE");
+						%>
+						
 						<tr>
-							<td>6</td>
-							<td><a href=""><span class="color-notice">사이트 오픈</span>이 일주일 후로 미루어졌습니다.</td>
-							<td>admin</td>
+							<td><%=id %></td>
+							<td><a href=""><span class="color-notice"> <%=writerid%>사이트 오픈</span>이 일주일 후로 미루어졌습니다.</td>
+							<td><%=writerid %></td>
 							<td>2017-12-18</td>
 							<td>58</td>
 						</tr>
-						<tr>
-							<td>5</td>
-							<td>12월 17일 늦은 저녁에 서비스 교체가 있습니다.</td>
-							<td>admin</td>
-							<td>2017-11-12</td>
-							<td>143</td>
-						</tr>
+						<% } %>
+						</tbody>
+						<%
+						rs.close();
+						st.close();
+						con.close();
 
-						<tr>
-							<td>4</td>
-							<td>당분간 수강신청을 받지 않으니 양해 부탁드립니다</td>
-							<td>admin</td>
-							<td>2017-10-12</td>
-							<td>213</td>
-						</tr>
+						%>
+						
 					</table>
 				</section>
 				<div>

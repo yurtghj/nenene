@@ -14,165 +14,462 @@
 
 */
 
-
 /* --------reset-------------------- */
-body{
-	margin:0px;
+body {
+	margin: 0px;
 }
-h1{
-	margin:0px;
+
+h1 {
+	margin: 0px;
 }
-ul{
+
+ul {
 	padding: 0px;
-	margin:0px;
+	margin: 0px;
 }
-li{
+
+li {
 	display: block;
 }
-a{
-	text-decoration: none;
-	color:inherit;
-}
-/*----------------------------abstract------------------*/
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+table {
+	border-spacing: 0px;
+	table-layout: fixed;
+}
+/*----------------------------base style------------------*/
+body {
+	color: #979797;
+	font-family: 돋움, Arial, sans-serif;
+	font-size: 11px;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.hidden {
+	display: none;
+}
+
+.color-warning, .color-notice {
+	color: #ff6a00;
+}
+
+.color-highlight {
+	color: #8cba34;
+}
+
+.text-strong {
+	font-weight: bold;
+}
+
+.text-cancel {
+	text-decoration: line-through;
+}
+
+.text-disable {
+	
+}
+
+.table {
+	border-top: 2px solid #8cba34;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+}
+
+.table tr, .table .tr {
+	height: 30px;
+	line-height: 30px;
+}
+
+.table td, .table .td {
+	text-align: center;
+	border-bottom: 1px solid #e9e9e9;
+	display: table-cell;
+	padding: 0px;
+}
+
+.table>thead {
+	
+}
+
+.table>thead>tr>td {
+	background: #f5f5f5 url("../images/bg-title-sp.png") no-repeat left
+		center;
+}
+
+.table>thead>tr>td:first-child {
+	background: #f5f5f5;
+}
+
+.table>tbody {
+	
+}
+
+.table>tbody>tr>td {
+	
+}
+
+.table .tr {
+	display: flex;
+}
+
+.table .width-sm {
+	width: 60px;
+	min-width: 60px;
+}
+
+.table .width-md {
+	width: 100px;
+	min-width: 100px;
+}
+
+.table .width-ex {
+	width: auto;
+	min-width: auto;
+	flex-grow: 1;
+}
+
+.table .align-left {
+	text-align: left;
+}
+
+.table .text-indent {
+	text-indent: 10px;
+}
+
+.table .text-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/*-------------------------flex-------------------*/
+.test-flex {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	height: 300px;
+	background: gray;
+	align-content: stretch;
+	align-items: stretch;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.test-flex .box1 {
+	background: red;
+	min-width: 100px;
+	min-height: 100px;
+	/* height:100px; */
+	/* align-self:center; */
+	order: 1;
+}
+
+.test-flex .box2 {
+	background: green;
+	min-width: 100px;
+	min-height: 150px;
+	height: 150px;
+	order: 0;
+}
+
+.test-flex .box3 {
+	background: blue;
+	min-width: 100px;
+	min-height: 80px;
+	height: 80px;
+}
+
+.test-flex .box4 {
+	background: black;
+	min-width: 100px;
+	min-height: 100px;
+	height: 100px;
+}
+
+.test-flex .box4 {
+	background: black;
+	min-width: 100px;
+	min-height: 100px;
+	height: 100px;
+}
+
+.test-flex .box5 {
+	background: yellow;
+	min-width: 100px;
+	min-height: 50px;
+	height: 50px;
+}
+
+.test-flex .box6 {
+	background: pink;
+	min-width: 100px;
+	min-height: 100px;
+	height: 100px;
+}
+
+.test-flex .box7 {
+	background: orange;
+	min-width: 100px;
+	min-height: 100px;
+	height: 100px;
+}
+
+.test-flex .box8 {
+	background: #8000ff;
+	min-width: 100px;
+	min-height: 100px;
+	height: 100px;
+}
+
+/*정리습관 . 태그 먼저 다음 클래스 */
 
 /*-----------------component------------------------------*/
-.btn{
-	
+.btn, .button {
+	min-width: 71px;
+	color: #ffffff;
+	display: inline-block;
+	/*inline-block inline속성(한 줄 내에서 다른 요소들과 연결됨)과 
+	block 속성(width,height,margin 등의 속성)을 동시에 가짐*/
+	text-align: center; /*텍스트 가운데 정렬~~  박스는 margin auto.........*/
+	padding: 3px 8px;
+	border-radius: 4px;
+	/*input override*/
+	cursor: pointer;
+	border: 0px;
 }
-.btn-default{
-	background:#759d2a;
-	min-width:71px;
-	color:#ffffff;
-	display:inline-block;
-	text-align:center; /*텍스트 가운데 정렬~~  박스는 margin auto.........*/
-	padding:3px 8px;
+/* .btn-text{
+	
+} */
+.btn-text:hover, .button-text:hover {
+	color: red;
+	background: yellow;
+}
+/*적용순서 img 보다 앞에 와야햄*/
+.btn-img {
+	/*overriding for image button*/
+	border-radius: 0px;
+	text-indent: -999px;
+	/*input은 자동적으로 overflow:hidden 을 가지고있음*/
+	overflow: hidden;
+}
+
+.btn-search {
+	background: url('../images/btn-zoom.png') no-repeat center;
+	min-width: 31px;
+	height: 25px;
+
+	/*확인용 ㅠㅡㅠ*/
+	/* 	color:black;
+	border: 1px solid red; */
+}
+
+.btn-default, .default-button {
+	background: #759d2a;
+}
+
+.btn-warning, .warning-button {
+	background: #000000;
+}
+
+.btn-cancle, .cancel-button {
+	background: #000000;
+	min-width: 71px;
+	color: #ffffff;
+	display: inline-block;
+	text-align: center;
+	padding: 3px 8px;
 	border-radius: 4px;
 }
-.btn-warning{
-	
-}
-.btn-cancel{
-	
-}
-
-
 
 /*---------------------------------------------*/
-.hor-menu{
-		display: inline-block;
-	}
+.hor-menu {
+	display: inline-block;
 	
-	.hor-menu > h1{
-		display: none;
-	}
-		
-	.hor-menu>ul {
-		overflow: auto;
-	}
-			.hor-menu>ul>li{
-			float: left;
-		}
-		.hor-menu.fitst-pad-none>ul>li:first-child{ /*and*/
-			padding-left: 0px;
-			background: none;
-		}
-		
-/*--------------------------*/
-#header{
-	height : 70px;
+}
+
+.hor-menu>h1 {
+	display: none;
+}
+
+.hor-menu>ul {
+	overflow: auto;
+}
+
+.hor-menu>ul>li {
+	float: left;
+}
+
+.hor-menu.fitst-pad-none>ul>li:first-child { /*and*/
+	padding-left: 0px;
+	background: none;
+}
+/*:first-child 있는놈 after 없는놈*/
+/*--------title style-----------------------*/
+.title {
+	
+}
+
+.title {
+	
+}
+/*--------header------------------*/
+#header {
+	height: 70px;
 }
 /*----main-menu style*/
-	.main-menu{
-		font-family :"맑은고딕", "고딕", "sans-serif";
-		font-size: 15px;
-		font-weight: bold;	
-		color:#000000;
-	}
-	
-	.main-menu>ul>li{
-			padding-left: 24px;
-			background: url("../images/bg-main-menu-vsp.png") no-repeat 13px center;
-		}
-	
+.main-menu {
+	font-family: "맑은고딕", "고딕", "sans-serif";
+	font-size: 15px;
+	font-weight: bold;
+	color: #000000;
+	position: absolute;
+	left: 200px;
+	top: 27px;
+}
+
+.main-menu>ul>li {
+	padding-left: 24px;
+	background: url("../images/bg-main-menu-vsp.png") no-repeat 13px center;
+}
+
 /*------------------------------------------------------------------------------*/
-	
-	.member-menu{
-		font-family :"맑은고딕", "고딕", "sans-serif";
-		font-size: 10px;
-		font-weight: bold;	
-	}
-		.member-menu>ul>li{
-			padding-left: 9px;
-			background: url("../images/bg-memebr-menu-sp.png") no-repeat 4px center;
-		}
-		
+.member-menu {
+	font-family: "맑은고딕", "고딕", "sans-serif";
+	font-size: 10px;
+	font-weight: bold;
+	position: absolute;
+	right: 0px; /*글자때문에 오른쪽에 못 박으세욘 left하면 wrapping되서 줄 내려감*/
+	top: 20px;
+}
+
+.member-menu>ul>li {
+	padding-left: 9px;
+	background: url("../images/bg-memebr-menu-sp.png") no-repeat 4px center;
+}
 
 /*-----------visual------------------------------------*/
-#visual{
-	height : 170px;
-	border-top:3px solid #8CBA34; /*뒤에있는 아이를 기준으로 줌*/
+#visual {
+	height: 170px;
+	border-top: 3px solid #8CBA34; /*뒤에있는 아이를 기준으로 줌*/
 	/* background :#313131 url("../images/bg-visual.png") no-repeat center;  */
 }
+
 /*--------------visual--------------------*/
-#body{
-	min-height : 300px;  /*물려받은 높이 없음*/
-	border-top:5px solid #8CBA34;
-	margin-top:1px;
+#body {
+	min-height: 300px; /*물려받은 높이 없음*/
+	border-top: 5px solid #8CBA34;
+	margin-top: 1px;
 }
-#footer{
-	height : 100px;
-	background :#313131;
+
+#footer {
+	height: 100px;
+	background: #313131;
 }
-.root-container{
-	height:100%;
-	min-height:inherit;
+
+.root-container {
+	height: 100%;
+	min-height: inherit;
 	/*height:inherit;*/
-	width : 960px;
-	margin-left:auto;
-	margin-right:auto;
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	position:relative;
 }
 
-#body> .root-container{
-	display:flex;
+#body>.root-container {
+	display: flex;
 	flex-direction: row;
-	background:url("../images/bg-body.png") repeat-y center;
-}
-	
-#aside{
-	min-height:inherit;
-	min-width:205px;
-	/* float:left; */
-	background:url("../images/bg-aside-title.png") no-repeat left top;
+	background: url("../images/bg-body.png") repeat-y center;
 }
 
-#main{
-	min-height:inherit;
-	min-width:755px;
+#aside {
+	min-height: inherit;
+	min-width: 205px;
+	/* float:left; */
+	background: url("../images/bg-aside-title.png") no-repeat left top;
+}
+.aside-menu{
+	background: url("../images/bg-aside-menu-hsp.png") repeat-x left bottom;
+	height:26px;
+	line-height:26px;
+}
+.aside-menu li{
+	font-family: "맑은고딕","고딕","sans-serif";
+	font-weight: bold;
+	color: #808080;
+	padding-left: 26px;
+	text-decoration:none;
+}
+.aside-menu li:hover{
+	background:url("../images/icon-current.png") no-repeat 15px center;
+}
+
+#main {
+	min-height: inherit; /*상위 엘리먼트의 속성값을 그대로 물려받아 적용*/
+	min-width: 755px;
 	/* float:left; */
 	/* padding-left:35px; */
-	padding:45px 0px 40px 35px; /*padding을 주면 박스가 늘어남. 그래서 box-sizing: border-box; 사용*/
+	padding: 45px 0px 40px 35px;
+	/*  padding을 주면 박스가 늘어남. 그래서 box-sizing: border-box; 사용 */
 	box-sizing: border-box;
 }
 
-#main > section > h1{
-	border:1px solid red;
-	width:100px;
-	height:100px;
-	background:url("../images/logo.png") no-repeat left top;
-	/*background-attachment:fixed; 문서에 상관없이 화면에 고정*/
-	/*background-attachment:local; 스크롤에 맞춰서 나타났다 사라짐 기본값임*/
-	background-attachment:scroll;
-	overflow:scroll;
+#main>section>h1 /*구조이용 이게 제일 조앙*/ , .main-title, #main>section>.title {
+	font-family: "맑은고딕", "고딕", "sans-serif";
+	font-size: 21px;
+	font-weight: bold;
+	color: #646464;
+	padding: 25px;
+	background: url("../images/icon-main-title.png") no-repeat left center;
 }
 
-.clear-fix::after{
-	content:"안뇽하세요?";
-	display:block;
-	clear:both;
-	height:0px;
-	overflow:hidden; /*넘친것들 숨김*/
+.clear-fix::after {
+	content: "안뇽하세요?";
+	display: block;
+	clear: both;
+	height: 0px;
+	overflow: hidden; /*넘친것들 숨김*/
 }
+#logo{
+	position:absolute;
+	top:23px;
+	left:0px;
+}
+#lecture-search-form{
+	position:absolute;
+	left:468px;
+	top:21px;
+}
+.quick-menu{
+	position:absolute;
+	top:40px;
+	right:0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,3 +1,19 @@
+<%@page import="com.newlecture.jspweb.entity.NoticeView"%>
+<%@page import="com.newlecture.jspweb.dao.jdbc.JdbcNoticeDao"%>
+<%@page import="com.newlecture.jspweb.entity.Notice"%>
+<%@page import="java.util.List"%>
+<%@page import="com.newlecture.jspweb.dao.NoticeDao"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import= "java.sql.DriverManager"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	NoticeDao noticeDao = new JdbcNoticeDao();
+	List<NoticeView> list = noticeDao.getList();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,11 +21,37 @@
 <title>Insert title here</title>
 <link href="../../css/style.css"type="text/css"rel="stylesheet"/>
 <style type="text/css">
-
 </style>
+
+<script type="text/javascript">
+	
+/* 	var exam = new Object();
+	exam["kor"] = 30;
+	exam["eng"] = 40;
+	
+	alert(exam["kor"]); */
+ /* 
+	var exam = {};
+	exam.kor = 30;
+	exam.eng = 40;
+	
+	alert(exam.kor);  */
+	
+/* 	var list = [
+		{kor:30, eng:40, math:60},
+		{kor:10, eng:70, math:90},
+		{kor:40, eng:60, math:20}
+	];
+	
+	alert(list[1],kor); */
+
+	var json = "{kor:30, eng:40,math:60}"
+	
+</script>
+
 </head>
 <body>
-	<header id="header">
+<header id="header">
 		<div class="root-container">
 			 <h1 id="logo"><img src="../../images/logo.png"alt="뉴렉처 온라인"></h1>
 
@@ -25,7 +67,7 @@
 				</ul>
 			</nav>
 
-			<section>
+			<section id="lecture-search-form">
 				<h1 class='hidden'>강좌검색 폼</h1>
 				<form>
 					<fieldset>
@@ -47,12 +89,12 @@
 				</ul>
 			</nav>
 
-			<nav class="hor-menu">
+			<nav class="hor-menu quick-menu">
 				<h1>간편 메뉴</h1>
 				<ul>
 					<li><img src="../../images/txt-mypage.png"alt="마이페이지"></li>
 					<li><img src="../../images/txt-customer.png"alt="고객센터"></li>
-				</ul>
+					</ul>
 			</nav>
 		</section> 
 		</div>
@@ -68,10 +110,10 @@
 			<!---------------------aside 시작 -------------------- -->
 			<aside id="aside">
 
-				<h1 class='hidden'>고객센터</h1>
+				<h1>고객센터</h1>
 
-				<nav>
-					<h1>고객센터메뉴</h1>
+				<nav class="aside-menu">
+					<h1 class="hidden">고객센터메뉴</h1>
 					<ul>
 						<li>공지사항</li>
 						<li>1:1고객문의</li>
@@ -79,7 +121,7 @@
 					</ul>
 				</nav>
 
-				<nav>
+				<nav class="aside-menu">
 					<h1 class="title">추천사이트</h1>
 					<ul>
 						<li>앤서이즈</li>
@@ -91,6 +133,17 @@
 			</aside>
 			<!--------------------------main 시작----------------------------------->
 			<main id="main">
+	<!-- 		<div class="test-flex">
+			<div class="box1">1</div>
+			<div class="box2">2</div>
+			<div class="box3">3</div>
+			<div class="box4">4</div>
+			<div class="box5">5</div>
+			<div class="box6">6</div>
+			<div class="box7">7</div>
+			<div class="box8">8</div>
+			
+			</div> -->
 			<section>
 				<h1 class="title">
 				공지사항<br/>
@@ -115,40 +168,65 @@
 				</section>
 				
 				<section>
-				<h3 class='hidden'>공지사항 검색 목록</h3>
+				<h1 class="hidden">공지사항 검색 목록</h1>
 				
-					<table border="1">
-						<tr>
-							<td>번호</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>작성일</td>
-							<td>조회수</td>
+					<table class="table">
+					<thead>
+					<tr>
+							<td class="width-sm">번호</td>
+							<td class="width-ex">제목</td>
+							<td class="width-md">작성자</td>
+							<td class="width-md">작성일</td>
+							<td class="width-sm">조회수</td>
 						</tr>
+					</thead>
+					
+						<tbody>
+						<%for(Notice n : list) {%>
+						
 						<tr>
-							<td>6</td>
-							<td><a href=""><span class="color-notice">사이트 오픈</span>이 일주일 후로 미루어졌습니다.</td>
-							<td>admin</td>
+							<td><%=n.getId() %></td>
+							<td class="align-left text-indent text-ellipsis"><a href=""><span class="color-notice"> <%=n.getTitle()%>dhfksjdfhksjfhkjasdhfksjdfhkjsdhfkjsfhksjdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a></td>
+							<td><%=n.getWriterid() %></td>
 							<td>2017-12-18</td>
-							<td>58</td>
+							<td>54</td>
 						</tr>
-						<tr>
-							<td>5</td>
-							<td>12월 17일 늦은 저녁에 서비스 교체가 있습니다.</td>
-							<td>admin</td>
-							<td>2017-11-12</td>
-							<td>143</td>
-						</tr>
+						<% }%>
+						</tbody>
 
-						<tr>
-							<td>4</td>
-							<td>당분간 수강신청을 받지 않으니 양해 부탁드립니다</td>
-							<td>admin</td>
-							<td>2017-10-12</td>
-							<td>213</td>
-						</tr>
 					</table>
 				</section>
+		<!-- ------------------------------------------------------------------------------------ -->		
+				<section>
+				<h1 >공지사항 검색 목록</h1>
+				
+					<div class="table">
+						<div>
+							<div class="tr">
+								<div class="td width-sm">번호</div>
+								<div class="td width-ex">제목</div>
+								<div class="td width-md">작성자</div>
+								<div class="td width-md">작성일</div>
+								<div class="td width-sm">조회수</div>
+							</div>
+						</div>
+		
+						<div>
+						<%for(Notice n : list) {%>
+						
+						<div class="tr">
+							<div class="td width-sm"><%=n.getId() %></div>
+							<div class="td width-ex align-left text-indent text-ellipsis"><a href=""><span class="color-notice"> <%=n.getTitle()%>dhfksjdfhksjfhkjasdhfksjdfhkjsdhfkjsfhksjdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a></div>
+							<div class="td width-md"><%=n.getWriterid() %></div>
+							<div class="td width-md">2017-12-18</div>
+							<div class="td width-sm">54</div>
+						</div>
+						<% }%>
+						</div>
+
+					</div>
+				</section>
+				
 				<div>
 				1/1 pages
 				</div>
@@ -177,3 +255,9 @@
 	</footer>
 </body>
 </html>
+
+
+
+
+
+
