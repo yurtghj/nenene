@@ -45,6 +45,8 @@ public class Calc2 extends HttpServlet{
 		out.write("			<div>");
 		out.write("				<label>y :</label>"); 
 		out.write("				<input type=\"text\" name=\"y\" />");
+		out.write("			</div>");
+		out.write("			<div>");
 		out.write("				<input id=\"btn-submit\" type=\"submit\" value=\"µ¡¼À\" />");		
 		out.write("				<input id=\"btn-app\" type=\"submit\" value=\"Application\" />");		
 		out.write("				<input id=\"btn-session\" type=\"submit\" value=\"Session\" />");		
