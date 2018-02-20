@@ -9,16 +9,17 @@
 <%@page import= "java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
+<%-- <%
 	NoticeDao noticeDao = new JdbcNoticeDao();
 	List<NoticeView> list = noticeDao.getList();
-%>
+%> --%>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Notice List</title>
 <link href="../../css/style.css"type="text/css"rel="stylesheet"/>
 <style type="text/css">
 </style>
@@ -182,7 +183,7 @@
 					</thead>
 					
 						<tbody>
-						<%for(Notice n : list) {%>
+					<%-- 	<%for(Notice n : list) {%>
 						
 						<tr>
 							<td><%=n.getId() %></td>
@@ -191,7 +192,7 @@
 							<td>2017-12-18</td>
 							<td>54</td>
 						</tr>
-						<% }%>
+						<% }%> --%>
 						</tbody>
 
 					</table>
@@ -211,7 +212,7 @@
 							</div>
 						</div>
 		
-						<div>
+					<%-- 	<div>
 						<%for(Notice n : list) {%>
 						
 						<div class="tr">
@@ -222,7 +223,7 @@
 							<div class="td width-sm">54</div>
 						</div>
 						<% }%>
-						</div>
+						</div> --%>
 
 					</div>
 				</section>

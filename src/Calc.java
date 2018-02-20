@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -103,18 +104,26 @@ public class Calc extends HttpServlet{
 		case "Application":{
 			ServletContext application = request.getServletContext();
 			String result_ = request.getParameter("result");
+			//object 쓸시 
+			//int result = Integer.parseInt(request.getParameter("result"));
 			application.setAttribute("result", result_);
-		}
+			}
 			break;
 			
 		case "Session":{
 			HttpSession session = request.getSession();
 			String result_ = request.getParameter("result");
 			session.setAttribute("result", result_);
-		}
+			}
 			break;
 
-		case "Cookie":
+		case "Cookie":{
+			String result_ = request.getParameter("result");
+			//쿠키는 키 무조건 문자열열열. 키 값이든 뭐든~~ 서블릿이 그렇게 만들었뎅
+			Cookie cookie = new Cookie("result",result_);
+			cookie.setMaxAge(60*60*24);
+			response.addCookie(cookie);
+			}
 			break;
 		}
 		
