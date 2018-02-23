@@ -28,6 +28,10 @@ public class MyPage extends HttpServlet{
 		/*Object app_ = String.valueOf(application.getAttribute("result"));
 		if (app_!=null)
 			app = (Integer)app_;*/
+		
+		/*Object app_ = application.getAttribute("result");
+		if (app_!=null)
+			app = Integer.parseInt(app_.toString());*/
 
 		String app_ = String.valueOf(application.getAttribute("result"));
 		if (!app_.equals("null") && !app_.equals(""))
@@ -56,7 +60,7 @@ public class MyPage extends HttpServlet{
 		out.write("		<div>application:"+app+"</div>");
 		out.write("		<div>session:"+s+"</div>");
 		out.write("		<div>cookie:"+c+"</div>");
-		out.write("		<div><a href=\"add\"></a>계산하기</div>");
+		out.write("		<div><a href=\"add\">계산하기</a></div>");
 		out.write("	</body>");
 		out.write("</html>");
 		

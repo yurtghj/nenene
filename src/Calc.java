@@ -69,6 +69,7 @@ public class Calc extends HttpServlet{
 		
 		//request.setCharacterEncoding("UTF-8"); 반드시 getParameter 전에 써줘야 함
 		request.setCharacterEncoding("UTF-8");
+		
 		PrintWriter out = response.getWriter();
 
 		int result = 0;
@@ -94,6 +95,7 @@ public class Calc extends HttpServlet{
 		String btn_ = request.getParameter("btn");
 		if (btn_!= null && !btn.equals(""))
 			btn = btn_;
+		
 		
 		//만약에 btn으로 전달될 값이 있다면 그 값을 btn변수에 대입
 		switch (btn) {

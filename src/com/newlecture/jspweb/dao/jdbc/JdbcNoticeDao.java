@@ -2,6 +2,7 @@ package com.newlecture.jspweb.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +16,7 @@ import com.newlecture.jspweb.entity.NoticeView;
 
 public class JdbcNoticeDao implements NoticeDao {
    
-   public List<NoticeView> getList() {
+   public List <NoticeView> getList() {
 	   
 	   String sql = "SELECT * FROM NOTICE";
 	      
@@ -25,15 +26,11 @@ public class JdbcNoticeDao implements NoticeDao {
 	         
 	         String url = "jdbc:oracle:thin:@211.238.142.251:1521:orcl";
 	         Connection con = DriverManager.getConnection(url, "c##sist", "dclass");
-	         Statement st = con.createStatement();
-	         ResultSet rs = st.executeQuery(sql);
+	         PreparedStatement st = con.prepareStatement(sql);
 	         
-	         String id;
-	         String title;
-	         String writerId;
-	         String content;
-	         Date regDate;
-	         int hit;      
+	         ResultSet rs = st.executeQuery();
+	         
+	         NoticeView notice = null;
 	         
 	         List<NoticeView> list = new ArrayList<>();
 	         
@@ -45,31 +42,34 @@ public class JdbcNoticeDao implements NoticeDao {
 	            regDate = rs.getDate("reg_Date");
 	            hit = rs.getInt("hit");*/
 	            
-	            NoticeView notice = new NoticeView(
-	                              id,
-	                              title,
-	                              writerId,
-	                              content,
-	                              regDate,
-	                              hit
-	                           );
-	            list.add(notice);
-	         }
-	         
-	         rs.close();
-	         st.close();
-	         con.close();
-	         
-	         return list;
-	      } catch (ClassNotFoundException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }
-      
-   }
+	        	 		notice = new NoticeView(
+	            		rs.getString("ID"),
+	            		rs.getString("TITLE"),
+	            		rs.getString("WRTITER_ID"),
+	            		rs.getString("CONTENT"),
+	            		rs.getDate("REG_DATE"),
+	            		rs.getInt("HIT")
+	            		
+	                 );
+	            
+				list.add(notice);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   
+		return list;
+	}
+
    /*public List<NoticeView> getList(int page, String field, String query) {
       
       String sql = "SELECT * FROM NOTICE";
@@ -127,6 +127,7 @@ public class JdbcNoticeDao implements NoticeDao {
       return null;
 	}*/
 
+   
 	@Override
 	public NoticeView get(String id) {
 		// TODO Auto-generated method stub
