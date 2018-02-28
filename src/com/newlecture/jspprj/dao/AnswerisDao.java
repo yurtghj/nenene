@@ -10,6 +10,7 @@ public interface AnswerisDao {
 	public int insert(Answeris answeris);
 	public int update(Answeris answeris);
 	public int delete(String id);
-	public List<AnswerisView> getList();
+	
+	public List<AnswerisView> getList(int page);
 	public AnswerisView get(String id);
 }
